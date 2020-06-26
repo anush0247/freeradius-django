@@ -11,7 +11,7 @@ This projects goal is to make it easier for contributors to django-freeradius to
 ## Getting Started
 Clone or fork this repository or simply use the included docker-compose.yml on your docker host.
 ```bash
-$ git clone --recurse-submodules https://github.com/2stacks/freeradius-django.git
+$ git clone --recurse-submodules --branch aneesh-dev https://github.com/anush0247/freeradius-django.git
 $ cd freeradius-django
 ```
 Note: The master branch of the django-freeradius project is included as a submodule for integration testing with Docker.
@@ -19,12 +19,9 @@ Note: The master branch of the django-freeradius project is included as a submod
 #### Edit Settings
 The freeradius-django and postgres containers can be customized with environment variables set in docker-compose.yml
 
-To run the full stack with docker-compose you must first create a settings file for the django server's database connection.
-```bash
-cp ./django-freeradius/tests/local_settings.example.py ./django-freeradius/tests/local_settings.py
-```
+To run the full stack with docker-compose you must first create a settings file for the django server's database connection. Which is already created for you.
 
-Edit local_settings.py as follows
+Edit local_settings.py as follows (if required)
 ```bash
 # ./django-freeradius/tests/local_settings.py
 
