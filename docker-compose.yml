@@ -7,8 +7,13 @@ services:
     ports:
       - "1812:1812/udp"
       - "1813:1813/udp"
-    #volumes:
-      #- "./certs/freeradius:/etc/raddb/certs"
+    volumes:
+      # - "./certs/freeradius:/etc/raddb/certs"
+      - "./raddb/clients.conf:/etc/raddb/clients.conf"
+      - "./raddb/mods-available/eap:/etc/raddb/mods-available/eap"
+      - "./raddb/mods-available/sql:/etc/raddb/mods-available/sql"
+      - "./raddb/radiusd.conf:/etc/raddb/radiusd.conf"
+      - "./raddb/sites-available/inner-tunnel:/etc/raddb/sites-available/inner-tunnel"
     environment:
       #- DB_NAME=radius
       #- DB_HOST=postgres
@@ -21,8 +26,8 @@ services:
       - API_TOKEN=djangofreeradiusapitoken
       - RADIUS_SSL_MODE=prefer
       #- RADIUS_KEY=testing123
-      #- RADIUS_CLIENTS=10.0.0.0/24
-      - RADIUS_DEBUG=yes
+      - RADIUS_CLIENTS=0.0.0.0/0
+      # - RADIUS_DEBUG=yes
     depends_on:
       - postgres
       - django
@@ -54,7 +59,7 @@ services:
   postgres:
     image: postgres:10-alpine
     ports:
-      - "127.0.0.1:5432:5432"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./certs/postgres/server.crt:/server.crt
