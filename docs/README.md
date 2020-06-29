@@ -170,3 +170,9 @@ $ docker-compose down # to down the server
 $ docker-compose up -d # to start the servers
 $ docker-compose up -d --force-recreate # restart the server with updated config in docker-compose file.  
 ```
+
+### Danger 
+
+```bash
+$ docker-compose down -v # will remove the db data permanently 
+```
