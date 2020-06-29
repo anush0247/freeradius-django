@@ -44,8 +44,15 @@ DATABASES = {
     },
 }
 
-# change the postgres db passwords in docker-compose.yml file as well above local_settings.py file.
+SECRET_KEY = "replace me with 64 characters random string"
+# Please follow deployment checklist as well.
+# 
 ```
+
+> Deployment checklist
+> - change the postgres db passwords in docker-compose.yml file as well above local_settings.py file.
+> - change SECRET_KEY setting values
+> - use strong super user name and password
 
 A set of test certificates for Postgresql were generated with [easyRSA](https://github.com/OpenVPN/easy-rsa).
 You may use these for testing however, they must be made readable by the Postgresql container before use.
