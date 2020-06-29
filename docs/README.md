@@ -19,11 +19,19 @@ Note: The master branch of the django-freeradius project is included as a submod
 #### Edit Settings
 The freeradius-django and postgres containers can be customized with environment variables set in docker-compose.yml
 
-To run the full stack with docker-compose you must first create a settings file for the django server's database connection. Which is already created for you.
+To run the full stack with docker-compose you must first create a settings file for the django server's database connection.
 
-Edit local_settings.py as follows (if required)
+```
+cp ./django-freeradius/tests/local_settings.example.py ./django-freeradius/tests/local_settings.py
+```
+
 ```bash
 # ./django-freeradius/tests/local_settings.py
+
+DEBUG = False
+TIME_ZONE = 'Asia/Kolkata'
+DJANGO_FREERADIUS_USERGROUP_ADMIN = True
+ALLOWED_HOSTS = ['*']
 
 DATABASES = {
     'default': {
@@ -33,11 +41,10 @@ DATABASES = {
         'PASSWORD': 'debug',
         'HOST': 'postgres',
         'PORT': '5432',
-        'OPTIONS': {'sslmode': 'require'},
     },
 }
 
-ALLOWED_HOSTS = ['*']
+# change the postgres db passwords in docker-compose.yml file as well above local_settings.py file.
 ```
 
 A set of test certificates for Postgresql were generated with [easyRSA](https://github.com/OpenVPN/easy-rsa).
@@ -153,4 +160,13 @@ Note: To create certificates for use in production environments follow direction
 ### Build container
 ```bash
 $ docker build --no-cache --pull -t 2stacks/freeradius-django .
+```
+
+### Frequent docker commands
+
+```bash
+$ docker restart freeradius-django_freeradius_1 # restart free radius docker container after updating the nas db entries
+$ docker-compose down # to down the server 
+$ docker-compose up -d # to start the servers
+$ docker-compose up -d --force-recreate # restart the server with updated config in docker-compose file.  
 ```
