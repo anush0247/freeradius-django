@@ -9,7 +9,10 @@ services:
       - "1813:1813/udp"
     volumes:
       # - "./certs/freeradius:/etc/raddb/certs"
-      - "./raddb/:/etc/raddb/"
+      - "./raddb/mods-available/eap:/etc/raddb/mods-available/eap"
+      - "./raddb/mods-available/sql:/etc/raddb/mods-available/sql"
+      - "./raddb/radiusd.conf:/etc/raddb/radiusd.conf"
+      - "./raddb/sites-available/inner-tunnel:/etc/raddb/sites-available/inner-tunnel"
     environment:
       #- DB_NAME=radius
       #- DB_HOST=postgres
