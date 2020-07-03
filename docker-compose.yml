@@ -3,6 +3,8 @@ version: '3.2'
 services:
 
   freeradius:
+    build:
+      context: .
     image: 2stacks/freeradius-django
     ports:
       - "1812:1812/udp"
