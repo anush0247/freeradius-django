@@ -28,7 +28,7 @@ services:
       - RADIUS_SSL_MODE=prefer
       #- RADIUS_KEY=testing123
       - RADIUS_CLIENTS=0.0.0.0/0
-      # - RADIUS_DEBUG=yes
+      - RADIUS_DEBUG=yes
     depends_on:
       - postgres
       - django
